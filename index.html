@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LLM Server Controller — Удобный интерфейс для llama.cpp</title>    
     
-   <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; }
@@ -16,7 +16,7 @@
     <header class="relative overflow-hidden bg-slate-900 border-b border-slate-800 py-16 sm:py-24">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/20 mb-4">
-                Релиз: v0.1.6 · MIT Лицензия
+                Релиз: v0.1.7 · MIT Лицензия
             </span>
             <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-indigo-400">
                 LLM Server Controller
@@ -25,8 +25,8 @@
                 Кроссплатформенное настольное приложение для удобного управления локальным сервером <code class="text-indigo-400 bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">llama-server.exe</code>. Запускайте и настраивайте GGUF модели без терминала.
             </p>
             <div class="mt-10 flex flex-wrap justify-center gap-4">
-                <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController._v0.1.6.exe/download" class="px-6 py-3.5 bg-indigo-600 hover:bg-indigo-500 font-semibold rounded-lg shadow-lg shadow-indigo-600/20 transition duration-200 text-white flex items-center gap-2">
-                    📥 Скачать v0.1.6 для Windows (.exe)
+                <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController_v0.1.7.exe/download" class="px-6 py-3.5 bg-indigo-600 hover:bg-indigo-500 font-semibold rounded-lg shadow-lg shadow-indigo-600/20 transition duration-200 text-white flex items-center gap-2">
+                    📥 Скачать v0.1.7 для Windows (.exe)
                 </a>
                 <a href="https://pay.heleket.com/wallet/61486d55-7249-4cab-8596-fbd38b3e9047" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-slate-800 hover:bg-slate-700 font-semibold rounded-lg border border-slate-700 transition duration-200 text-slate-200 flex items-center gap-2">
                     ☕ Поддержать разработку
@@ -38,14 +38,14 @@
 
             <!-- Linux downloads -->
             <div class="mt-6 flex flex-wrap justify-center items-center gap-3">
-                <span class="text-sm text-slate-500">🐧 Linux (v0.1.6):</span>
-                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.6/LLMServerController-Linux-v0.1.6.deb" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
+                <span class="text-sm text-slate-500">🐧 Linux (v0.1.7):</span>
+                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.7/LLMServerController-Linux-v0.1.7.deb" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
                     .deb
                 </a>
-                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.6/LLMServerController-Linux-v0.1.6.rpm" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
+                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.7/LLMServerController-Linux-v0.1.7.rpm" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
                     .rpm
                 </a>
-                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.6/LLMServerController-Linux-v0.1.6.tar.gz" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
+                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.7/LLMServerController-Linux-v0.1.7.tar.gz" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
                     .tar.gz
                 </a>
             </div>
@@ -75,7 +75,7 @@
             </div>
         </section>
 
-        <!-- GitHub Releases / Release History Section -->
+        <!-- Releases / Release History Section -->
         <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                 <div>
@@ -88,42 +88,41 @@
             </div>
 
             <div class="space-y-6">
-                <!-- Release v0.1.6 -->
+                <!-- Release v0.1.7 -->
                 <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-4">
                     <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
                         <div class="flex items-center gap-3">
-                            <span class="text-lg font-bold text-white">v0.1.6</span>
-                            <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full font-medium">Последний релиз</span>
+                            <span class="text-lg font-bold text-white">v0.1.7</span>
+                            <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full font-medium">Свежий релиз</span>
                         </div>
-                        <span class="text-xs text-slate-500">Август 2026</span>
+                        <span class="text-xs text-slate-500">Сентябрь 2026</span>
                     </div>
+                    <p class="text-sm text-slate-400">Обновление адаптации под новые сборки <code class="text-indigo-400 bg-slate-950 px-1 rounded">llama.cpp</code> (начиная с билда b10875):</p>
                     <ul class="text-sm text-slate-300 space-y-1.5 list-disc pl-5">
-                        <li>Полная английская локализация интерфейса и расширенная поддержка языков.</li>
-                        <li>Добавлен параметр кастомного ввода команд при запуске <code class="text-indigo-400 bg-slate-950 px-1 rounded">llama-server</code>.</li>
-                        <li>Поддержка алиасов моделей и дополнительных флагов генерации.</li>
-                        <li>Исправления ошибок стабильности процессов при частой перезагрузке сервера.</li>
+                        <li>Удалены устаревшие флаги аргументов: <code class="text-rose-400 bg-slate-950 px-1 rounded">--no-mmap</code> и <code class="text-rose-400 bg-slate-950 px-1 rounded">--mlock</code>.</li>
+                        <li>Добавлена поддержка новых параметров запуска: <code class="text-emerald-400 bg-slate-950 px-1 rounded">--load-mode</code> и <code class="text-emerald-400 bg-slate-950 px-1 rounded">--agent</code>.</li>
                     </ul>
                     <div class="flex flex-wrap gap-2 pt-2">
-                        <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController._v0.1.6.exe/download" class="text-xs px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded flex items-center gap-1 transition">🪟 Windows Setup (.exe)</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.6/LLMServerController-Linux-v0.1.6.deb" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.deb</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.6/LLMServerController-Linux-v0.1.6.rpm" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.rpm</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.6/LLMServerController-Linux-v0.1.6.tar.gz" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.tar.gz</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/archive/refs/tags/v0.1.6.zip" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded transition">Source Code (.zip)</a>
+                        <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController_v0.1.7.exe/download" class="text-xs px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded flex items-center gap-1 transition">🪟 Windows Setup (.exe)</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.7/LLMServerController-Linux-v0.1.7.deb" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.deb</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.7/LLMServerController-Linux-v0.1.7.rpm" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.rpm</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.7/LLMServerController-Linux-v0.1.7.tar.gz" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.tar.gz</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/archive/refs/tags/v0.1.7.zip" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded transition">Source Code (.zip)</a>
                     </div>
                 </div>
 
-                <!-- Release v0.1.5 -->
+                <!-- Release v0.1.6 -->
                 <div class="bg-slate-900/60 p-5 rounded-xl border border-slate-800/80 space-y-3">
                     <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2">
-                        <span class="text-base font-bold text-slate-200">v0.1.5</span>
-                        <span class="text-xs text-slate-500">Июль 2026</span>
+                        <span class="text-base font-bold text-slate-200">v0.1.6</span>
+                        <span class="text-xs text-slate-500">Август 2026</span>
                     </div>
-                    <p class="text-sm text-slate-400">Улучшена работа встроенного загрузчика сборок llama.cpp (CUDA / Vulkan / CPU), добавлена расширенная валидация аргументов CLI.</p>
+                    <p class="text-sm text-slate-400">Полная английская локализация интерфейса, кастомный ввод команд при запуске сервера, поддержка алиасов моделей и исправленная стабильность процессов.</p>
                     <div class="flex flex-wrap gap-2 pt-1">
-                        <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController_v0.1.5.exe/download" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Windows (.exe)</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.5/LLMServerController-Linux-v0.1.5.deb" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Linux (.deb)</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.5/LLMServerController-Linux-v0.1.5.rpm" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Linux (.rpm)</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.5/LLMServerController-Linux-v0.1.5.tar.gz" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Linux (.tar.gz)</a>
+                        <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController._v0.1.6.exe/download" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Windows (.exe)</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.6/LLMServerController-Linux-v0.1.6.deb" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Linux (.deb)</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.6/LLMServerController-Linux-v0.1.6.rpm" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Linux (.rpm)</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.6/LLMServerController-Linux-v0.1.6.tar.gz" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Linux (.tar.gz)</a>
                     </div>
                 </div>
             </div>
