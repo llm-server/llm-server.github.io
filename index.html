@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LLM Server Controller — Удобный интерфейс для llama.cpp</title>    
+    <title>LLM Server Controller v0.2.0 — Удобный интерфейс для llama.cpp</title>    
     
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,43 +12,61 @@
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between">
+
+    <!-- Language Switcher Bar -->
+    <nav class="bg-slate-900/90 border-b border-slate-800/80 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between">
+            <div class="flex items-center gap-2 font-bold text-sm text-slate-200">
+                <span class="text-indigo-400">⚡</span> LLM Server Controller
+            </div>
+            <div class="flex items-center gap-1 bg-slate-950 p-1 rounded-lg border border-slate-800 text-xs font-semibold">
+                <button id="lang-ru" onclick="setLanguage('ru')" class="px-3 py-1 rounded-md transition text-white bg-indigo-600 shadow-sm">
+                    🇷🇺 RU
+                </button>
+                <button id="lang-en" onclick="setLanguage('en')" class="px-3 py-1 rounded-md transition text-slate-400 hover:text-white">
+                    🇬🇧 EN
+                </button>
+            </div>
+        </div>
+    </nav>
+
     <!-- Header / Hero -->
     <header class="relative overflow-hidden bg-slate-900 border-b border-slate-800 py-16 sm:py-24">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/20 mb-4">
-                Релиз: v0.1.8 · MIT Лицензия
+            <span data-i18n="heroBadge" class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-medium bg-indigo-500/10 text-indigo-400 rounded-full border border-indigo-500/20 mb-4">
+                🚀 Крупный релиз: v0.2.0 · MIT Лицензия
             </span>
             <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-indigo-400">
                 LLM Server Controller
             </h1>
-            <p class="mt-6 text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                Кроссплатформенное настольное приложение для удобного управления локальным сервером <code class="text-indigo-400 bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">llama-server.exe</code>. Запускайте и настраивайте GGUF модели без терминала.
+            <p data-i18n="heroSubtitle" class="mt-6 text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                Полнофункциональное настольное приложение для удобного запуска и управления локальным сервером <code class="text-indigo-400 bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">llama-server</code>, с встроенным терминалом, менеджером моделей и поиском по HuggingFace.
             </p>
             <div class="mt-10 flex flex-wrap justify-center gap-4">
-                <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController_v0.1.8.exe/download" class="px-6 py-3.5 bg-indigo-600 hover:bg-indigo-500 font-semibold rounded-lg shadow-lg shadow-indigo-600/20 transition duration-200 text-white flex items-center gap-2">
-                    📥 Скачать v0.1.8 для Windows (.exe)
+                <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController_v0.2.0.exe/download" class="px-6 py-3.5 bg-indigo-600 hover:bg-indigo-500 font-semibold rounded-lg shadow-lg shadow-indigo-600/20 transition duration-200 text-white flex items-center gap-2">
+                    <span data-i18n="btnWinDownload">📥 Скачать v0.2.0 для Windows (.exe)</span>
                 </a>
                 <a href="https://www.youtube.com/watch?v=575w4Syr5q0&list=PLa3OFUyLHWeU&pp=sAgC" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-red-600/20 hover:bg-red-600/30 font-semibold rounded-lg border border-red-500/30 transition duration-200 text-red-300 flex items-center gap-2">
-                    ▶️ Видеоуроки на YouTube
+                    <span data-i18n="btnYouTube">▶️ Видеоуроки на YouTube</span>
                 </a>
                 <a href="https://pay.heleket.com/wallet/61486d55-7249-4cab-8596-fbd38b3e9047" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-slate-800 hover:bg-slate-700 font-semibold rounded-lg border border-slate-700 transition duration-200 text-slate-200 flex items-center gap-2">
-                    ☕ Поддержать разработку
+                    <span data-i18n="btnSupport">☕ Поддержать</span>
                 </a>
                 <a href="https://github.com/dmitrymaxs/LLM_Server_Controller" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-slate-800 hover:bg-slate-700 font-semibold rounded-lg border border-slate-700 transition duration-200 text-slate-200 flex items-center gap-2">
-                    🐙 GitHub Репозиторий
+                    <span>🐙 GitHub</span>
                 </a>
             </div>
 
             <!-- Linux downloads -->
             <div class="mt-6 flex flex-wrap justify-center items-center gap-3">
-                <span class="text-sm text-slate-500">🐧 Linux (v0.1.8):</span>
-                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.8/LLMServerController-Linux-v0.1.8.deb" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
+                <span class="text-sm text-slate-500">🐧 Linux (v0.2.0):</span>
+                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.2.0/LLMServerController-Linux-v0.2.0.deb" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
                     .deb
                 </a>
-                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.8/LLMServerController-Linux-v0.1.8.rpm" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
+                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.2.0/LLMServerController-Linux-v0.2.0.rpm" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
                     .rpm
                 </a>
-                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.8/LLMServerController-Linux-v0.1.8.tar.gz" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
+                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.2.0/LLMServerController-Linux-v0.2.0.tar.gz" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-sm font-medium rounded-lg border border-slate-700 transition duration-200 text-slate-200">
                     .tar.gz
                 </a>
             </div>
@@ -61,23 +79,31 @@
         
         <!-- Features Grid -->
         <section>
-            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12">Основные возможности</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <h2 data-i18n="featuresTitle" class="text-2xl sm:text-3xl font-bold text-center mb-12">Основные возможности v0.2.0</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                    <div class="text-indigo-500 font-bold text-lg mb-2">🕹 Управление бэкендом</div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Запуск, остановка и перезапуск сервера с визуальным контролем статуса, анимацией загрузки и звуковыми оповещениями.</p>
+                    <div data-i18n="f1Title" class="text-indigo-500 font-bold text-lg mb-2">🤗 Менеджер моделей & HuggingFace</div>
+                    <p data-i18n="f1Desc" class="text-slate-400 text-sm leading-relaxed">Удобный просмотр локальных .gguf моделей, встроенный поиск по HuggingFace Hub с сортировкой, отслеживанием прогресса и скачиванием в один клик.</p>
                 </div>
                 <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                    <div class="text-indigo-500 font-bold text-lg mb-2">📦 Авто-установка & Апдейты</div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Прямое скачивание сборок llama.cpp. Проверка доступности новых версий приложения и сборок с бейджем «доступен bXXXX».</p>
+                    <div data-i18n="f2Title" class="text-indigo-500 font-bold text-lg mb-2">💻 Встроенный Терминал</div>
+                    <p data-i18n="f2Desc" class="text-slate-400 text-sm leading-relaxed">Настоящая системная консоль прямо в правой панели (cmd.exe в Windows, xterm в Linux). Поддерживает интерактивные TUI-утилиты (например, pi).</p>
                 </div>
                 <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                    <div class="text-indigo-500 font-bold text-lg mb-2">🌙 Тёмная тема</div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Стильный и комфортный интерфейс с полноценной поддержкой тёмного режима для комфортной работы в любое время суток.</p>
+                    <div data-i18n="f3Title" class="text-indigo-500 font-bold text-lg mb-2">🕹️ Статус-контроллер & Версия</div>
+                    <p data-i18n="f3Desc" class="text-slate-400 text-sm leading-relaxed">Индикатор статуса с цветовой индикацией (зеленый/оранжевый/синий) и живое определение установленной версии llama-server через опрос --version.</p>
                 </div>
                 <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                    <div class="text-indigo-500 font-bold text-lg mb-2">⚙️ 12 категорий настроек</div>
-                    <p class="text-slate-400 text-sm leading-relaxed">Тонкая конфигурация: контекст, GPU-слои, Flash Attention, размеры batch, параметры генерации, настройки MoE и эмбеддингов.</p>
+                    <div data-i18n="f4Title" class="text-indigo-500 font-bold text-lg mb-2">⚡ Установка pi-агента</div>
+                    <p data-i18n="f4Desc" class="text-slate-400 text-sm leading-relaxed">Быстрый запуск установки консольного pi-агента прямо из меню приложений (Файл → Установить pi-агента).</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <div data-i18n="f5Title" class="text-indigo-500 font-bold text-lg mb-2">⚙️ 18 категорий настроек</div>
+                    <p data-i18n="f5Desc" class="text-slate-400 text-sm leading-relaxed">Расширенная гибкая конфигурация: контекст, GPU, память, CPU, batch, параметры генерации, MoE, Embeddings/Reranking, SSL и опции бэкендов.</p>
+                </div>
+                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
+                    <div data-i18n="f6Title" class="text-indigo-500 font-bold text-lg mb-2">🌙 Темы и Локализация</div>
+                    <p data-i18n="f6Desc" class="text-slate-400 text-sm leading-relaxed">Поддержка тёмной и светлой темы оформления, а также мгновенное переключение языка интерфейса (RU / EN).</p>
                 </div>
             </div>
         </section>
@@ -86,15 +112,15 @@
         <section class="bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="space-y-3">
                 <div class="inline-flex items-center gap-2 text-xs font-semibold px-2.5 py-0.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded-full">
-                    ▶️ YouTube Плейлист
+                    ▶️ YouTube Playlist
                 </div>
-                <h2 class="text-2xl font-bold text-white">Видеообзоры и инструкции</h2>
-                <p class="text-slate-400 text-sm max-w-xl">
-                    Смотрите подробный разбор возможностей приложения, инструкции по настройке и работу с различными моделями в специальном плейлисте на YouTube.
+                <h2 data-i18n="ytTitle" class="text-2xl font-bold text-white">Видеоинструкции и демонстрации</h2>
+                <p data-i18n="ytDesc" class="text-slate-400 text-sm max-w-xl">
+                    Узнайте, как эффективно настраивать контроллер, искать и скачивать модели с HuggingFace и работать со встроенным терминалом.
                 </p>
             </div>
             <a href="https://www.youtube.com/watch?v=575w4Syr5q0&list=PLa3OFUyLHWeU&pp=sAgC" target="_blank" rel="noopener noreferrer" class="shrink-0 px-6 py-3.5 bg-red-600 hover:bg-red-500 text-white font-semibold rounded-lg shadow-lg shadow-red-600/20 transition flex items-center gap-2 text-sm">
-                Смотреть плейлист →
+                <span data-i18n="ytBtn">Смотреть видеоуроки →</span>
             </a>
         </section>
 
@@ -102,97 +128,71 @@
         <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6 sm:p-8">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h2 class="text-2xl font-bold">Релизы и загрузки</h2>
-                    <p class="text-slate-400 text-sm mt-1">Выберите необходимую версию или формат для вашей операционной системы</p>
+                    <h2 data-i18n="releasesTitle" class="text-2xl font-bold">История релизов</h2>
+                    <p data-i18n="releasesSubtitle" class="text-slate-400 text-sm mt-1">Выберите необходимую версию или архив релиза</p>
                 </div>
                 <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases" target="_blank" rel="noopener noreferrer" class="self-start sm:self-auto text-xs font-semibold px-3 py-2 bg-indigo-600/20 text-indigo-400 hover:bg-indigo-600/30 rounded-lg border border-indigo-500/30 transition">
-                    Все релизы на GitHub →
+                    <span data-i18n="allReleasesGithub">Все релизы на GitHub →</span>
                 </a>
             </div>
 
             <div class="space-y-6">
-                <!-- Release v0.1.8 -->
+                <!-- Release v0.2.0 -->
                 <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-4">
                     <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
                         <div class="flex items-center gap-3">
-                            <span class="text-lg font-bold text-white">v0.1.8</span>
-                            <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full font-medium">Свежий релиз</span>
+                            <span class="text-lg font-bold text-white">v0.2.0</span>
+                            <span data-i18n="badgeLatest" class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-0.5 rounded-full font-medium">Актуальный релиз</span>
                         </div>
-                        <span class="text-xs text-slate-500">Сентябрь 2026</span>
+                        <span class="text-xs text-slate-500">October 2026</span>
                     </div>
-                    <p class="text-sm text-slate-300 font-medium">Крупное обновление функционала и интерфейса:</p>
-                    <ul class="text-sm text-slate-300 space-y-1.5 list-disc pl-5">
-                        <li>Исправления багов и повышение общей стабильности работы приложения.</li>
-                        <li>Добавлена поддержка <strong>тёмной темы</strong> интерфейса.</li>
-                        <li>Внедрена встроенная <strong>система проверки обновлений</strong>: отслеживание релизов самого приложения и свежих сборок <code class="text-indigo-400 bg-slate-950 px-1 rounded">llama.cpp</code> с наглядным бейджем <span class="text-emerald-400 font-semibold">«доступен bXXXX»</span>.</li>
+                    <p data-i18n="v020Summary" class="text-sm text-slate-300 font-medium">Главное обновление приложения:</p>
+                    <ul data-i18n="v020List" class="text-sm text-slate-300 space-y-1.5 list-disc pl-5">
+                        <li><strong>Менеджер моделей:</strong> Поиск и прямое скачивание файлов .gguf с HuggingFace Hub.</li>
+                        <li><strong>Встроенный системный терминал:</strong> Интеграция настоящей консоли ОС прямо в панель интерфейса.</li>
+                        <li><strong>Система статусов и версий:</strong> Живой опрос версии llama-server --version и цветовой индикатор работы сервера.</li>
+                        <li><strong>Расширенная конфигурация:</strong> 18 категорий параметров запуска.</li>
+                        <li><strong>Интеграция pi-агента:</strong> Пункт меню для автоматической установки.</li>
                     </ul>
                     <div class="flex flex-wrap gap-2 pt-2">
-                        <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController_v0.1.8.exe/download" class="text-xs px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded flex items-center gap-1 transition">🪟 Windows Setup (.exe) — SourceForge</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.8/LLMServerController.exe" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">🪟 Windows (.exe)</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.8/LLMServerController-Linux-v0.1.8.deb" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.deb</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.8/LLMServerController-Linux-v0.1.8.rpm" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.rpm</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.8/LLMServerController-Linux-v0.1.8.tar.gz" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.tar.gz</a>
+                        <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController_v0.2.0.exe/download" class="text-xs px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded flex items-center gap-1 transition">🪟 Windows Setup (.exe) — SourceForge</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.2.0/LLMServerController-Linux-v0.2.0.deb" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.deb</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.2.0/LLMServerController-Linux-v0.2.0.rpm" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.rpm</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.2.0/LLMServerController-Linux-v0.2.0.tar.gz" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">.tar.gz</a>
+                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/tag/v0.2.0" class="text-xs px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-400 rounded transition">GitHub Tag</a>
                     </div>
                 </div>
 
-                <!-- Release v0.1.7 -->
+                <!-- Release v0.1.8 -->
                 <div class="bg-slate-900/60 p-5 rounded-xl border border-slate-800/80 space-y-3">
                     <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2">
-                        <span class="text-base font-bold text-slate-200">v0.1.7</span>
-                        <span class="text-xs text-slate-500">Сентябрь 2026</span>
+                        <span class="text-base font-bold text-slate-200">v0.1.8</span>
+                        <span class="text-xs text-slate-500">September 2026</span>
                     </div>
-                    <p class="text-sm text-slate-400">Обновление адаптации под новые сборки llama.cpp (b10875+): поддержка флагов <code class="text-emerald-400 bg-slate-950 px-1 rounded">--load-mode</code> и <code class="text-emerald-400 bg-slate-950 px-1 rounded">--agent</code>, удаление устаревших параметров.</p>
-                    <div class="flex flex-wrap gap-2 pt-1">
-                        <a href="https://sourceforge.net/projects/llm-server-controller/files/LLMServerController_v0.1.7.exe/download" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Windows (.exe)</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.7/LLMServerController-Linux-v0.1.7.deb" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Linux (.deb)</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.7/LLMServerController-Linux-v0.1.7.rpm" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Linux (.rpm)</a>
-                        <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases/download/v0.1.7/LLMServerController-Linux-v0.1.7.tar.gz" class="text-xs px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded transition">Linux (.tar.gz)</a>
-                    </div>
+                    <p data-i18n="v018Summary" class="text-sm text-slate-400">Добавлена тёмная тема интерфейса, автоматическая проверка обновлений самого приложения и свежих сборок llama.cpp.</p>
                 </div>
-
-                <!-- Release v0.1.6 -->
-                <div class="bg-slate-900/60 p-5 rounded-xl border border-slate-800/80 space-y-3">
-                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2">
-                        <span class="text-base font-bold text-slate-200">v0.1.6</span>
-                        <span class="text-xs text-slate-500">Август 2026</span>
-                    </div>
-                    <p class="text-sm text-slate-400">Полная английская локализация интерфейса, кастомный ввод команд при запуске сервера, поддержка алиасов моделей.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- UI & Architecture -->
-        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-10">
-            <h2 class="text-2xl font-bold mb-6">Продуманный интерфейс</h2>
-            <div class="space-y-4 text-slate-300 text-sm sm:text-base">
-                <p>Главное окно разделено на три функциональные зоны для максимальной продуктивности:</p>
-                <ul class="list-disc pl-5 space-y-2 text-slate-400">
-                    <li><strong class="text-slate-200">Панель путей:</strong> Быстрый выбор исполняемого файла, GGUF-модели и кнопка мгновенной загрузки бэкенда.</li>
-                    <li><strong class="text-slate-200">Двухпанельный менеджер параметров:</strong> Слева удобный список категорий, справа — аккуратная сетка со всеми полями ввода.</li>
-                    <li><strong class="text-slate-200">Окно логов:</strong> Интерактивный вывод потоков сервера с возможностью очистки, сохранения в файл или копирования в буфер.</li>
-                </ul>
             </div>
         </section>
 
         <!-- Quick Start / Usage -->
         <section>
-            <h2 class="text-2xl sm:text-3xl font-bold text-center mb-12">Как это работает?</h2>
+            <h2 data-i18n="qsTitle" class="text-2xl sm:text-3xl font-bold text-center mb-12">Быстрый запуск</h2>
             <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 relative">
                 <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-800/80">
-                    <div class="text-xs font-bold text-indigo-400 mb-2 uppercase tracking-wider">Шаг 1</div>
-                    <p class="text-sm text-slate-300">Скачайте бэкенд через <span class="text-white font-medium">Файл → Установить llama.cpp</span> или укажите путь к своему файлу.</p>
+                    <div data-i18n="step1" class="text-xs font-bold text-indigo-400 mb-2 uppercase tracking-wider">Шаг 1</div>
+                    <p data-i18n="step1Desc" class="text-sm text-slate-300">Запустите контроллер и скачайте бэкенд через <span class="text-white font-medium">Файл → Установить llama.cpp</span>.</p>
                 </div>
                 <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-800/80">
-                    <div class="text-xs font-bold text-indigo-400 mb-2 uppercase tracking-wider">Шаг 2</div>
-                    <p class="text-sm text-slate-300">Выберите вашу любимую ИИ-модель в формате <span class="text-white font-medium">.gguf</span> через файловый диалог.</p>
+                    <div data-i18n="step2" class="text-xs font-bold text-indigo-400 mb-2 uppercase tracking-wider">Шаг 2</div>
+                    <p data-i18n="step2Desc" class="text-sm text-slate-300">Скачайте модель в <span class="text-white font-medium">Файл → Модели…</span> через HuggingFace или выберите локальный .gguf.</p>
                 </div>
                 <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-800/80">
-                    <div class="text-xs font-bold text-indigo-400 mb-2 uppercase tracking-wider">Шаг 3</div>
-                    <p class="text-sm text-slate-300">Отрегулируйте параметры (например, количество GPU-слоёв для ускорения) под ваше железо.</p>
+                    <div data-i18n="step3" class="text-xs font-bold text-indigo-400 mb-2 uppercase tracking-wider">Шаг 3</div>
+                    <p data-i18n="step3Desc" class="text-sm text-slate-300">Настройте GPU-слои, контекст и параметры генерации в боковом меню.</p>
                 </div>
                 <div class="bg-slate-900/50 p-5 rounded-lg border border-slate-800/80">
-                    <div class="text-xs font-bold text-indigo-400 mb-2 uppercase tracking-wider">Шаг 4</div>
-                    <p class="text-sm text-slate-300">Нажмите <span class="text-white font-medium">Запустить</span>. Веб-интерфейс автоматически откроется на порту 18080!</p>
+                    <div data-i18n="step4" class="text-xs font-bold text-indigo-400 mb-2 uppercase tracking-wider">Шаг 4</div>
+                    <p data-i18n="step4Desc" class="text-sm text-slate-300">Нажмите <span class="text-white font-medium">Старт</span>. Сервер запустится на порту 18080 и откроется в браузере!</p>
                 </div>
             </div>
         </section>
@@ -200,33 +200,32 @@
         <!-- Specs & Requirements -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-6">
             <div>
-                <h3 class="text-xl font-bold mb-4">Системные требования</h3>
+                <h3 data-i18n="sysReqTitle" class="text-xl font-bold mb-4">Системные требования</h3>
                 <ul class="space-y-3 text-sm text-slate-400">
                     <li class="flex items-start gap-2">
                         <span class="text-emerald-500">✔</span>
-                        <span><strong>Windows:</strong> Полная поддержка (включая встроенный установщик бэкендов).</span>
+                        <span data-i18n="sysReqWin"><strong>Windows:</strong> Windows 10/11 x64 (полная поддержка).</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <span class="text-emerald-500">✔</span>
-                        <span><strong>Linux:</strong> Поддержка запуска сервера, сборка пакетов `.deb`, `.rpm` и архивов `.tar.gz`.</span>
+                        <span data-i18n="sysReqLin"><strong>Linux:</strong> Ubuntu 20.04+ (пакеты .deb, .rpm, .tar.gz).</span>
                     </li>
                     <li class="flex items-start gap-2">
                         <span class="text-emerald-500">✔</span>
-                        <span><strong>Python:</strong> Версии 3.x для сборки из исходного кода.</span>
+                        <span data-i18n="sysReqPy"><strong>Python:</strong> Версии 3.8–3.12 (при сборке из исходных файлов).</span>
                     </li>
                 </ul>
             </div>
             <div>
-                <h3 class="text-xl font-bold mb-4">Поддерживаемое железо (Бэкенды)</h3>
-                <p class="text-sm text-slate-400 leading-relaxed mb-4">
-                    Приложение поддерживает любые графические и центральные процессоры благодаря глубокой интеграции с экосистемой:
+                <h3 data-i18n="gpuTitle" class="text-xl font-bold mb-4">Поддерживаемое железо (Бэкенды)</h3>
+                <p data-i18n="gpuDesc" class="text-sm text-slate-400 leading-relaxed mb-4">
+                    Приложение поддерживает любые графические процессоры благодаря глубокой интеграции с экосистемой:
                 </p>
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-2.5 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">Vulkan (Универсальный)</span>
                     <span class="px-2.5 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">NVIDIA CUDA</span>
-                    <span class="px-2.5 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">AMD HIP/ROCm</span>
-                    <span class="px-2.5 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">Intel SYCL</span>
-                    <span class="px-2.5 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">OpenVINO</span>
+                    <span class="px-2.5 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">AMD ROCm / HIP</span>
+                    <span class="px-2.5 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">Intel Vulkan / SYCL</span>
+                    <span class="px-2.5 py-1 bg-slate-800 rounded text-xs font-medium text-slate-300 border border-slate-700">CPU (OpenVINO / AVX)</span>
                 </div>
             </div>
         </section>
@@ -236,16 +235,158 @@
     <footer class="bg-slate-900 border-t border-slate-800 text-slate-500 py-8 text-sm">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-                © 2026 Dmitry Maksimov. Проект распространяется под лицензией MIT.
+                © 2026 Dmitry Maksimov. <span data-i18n="mitLicense">Проект распространяется под лицензией MIT.</span>
             </div>
             <div class="flex gap-4">
-                <a href="https://t.me/Secret_Archives_Team" class="hover:text-slate-300 transition">Телеграм-канал</a>
+                <a href="https://t.me/Secret_Archives_Team" class="hover:text-slate-300 transition"><span data-i18n="tgChannel">Телеграм-канал</span></a>
                 <a href="https://www.youtube.com/watch?v=575w4Syr5q0&list=PLa3OFUyLHWeU&pp=sAgC" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">YouTube</a>
-                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases" class="hover:text-slate-300 transition">Релизы</a>
+                <a href="https://github.com/dmitrymaxs/LLM_Server_Controller/releases" class="hover:text-slate-300 transition"><span data-i18n="footerReleases">Релизы</span></a>
                 <a href="https://github.com/dmitrymaxs/LLM_Server_Controller" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">GitHub</a>
-                <a href="https://pay.heleket.com/wallet/61486d55-7249-4cab-8596-fbd38b3e9047" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition">Поддержать</a>
+                <a href="https://pay.heleket.com/wallet/61486d55-7249-4cab-8596-fbd38b3e9047" target="_blank" rel="noopener noreferrer" class="hover:text-slate-300 transition"><span data-i18n="btnSupport">Поддержать</span></a>
             </div>
         </div>
     </footer>
+
+    <!-- i18n Translation Script -->
+    <script>
+        const translations = {
+            ru: {
+                heroBadge: "🚀 Крупный релиз: v0.2.0 · MIT Лицензия",
+                heroSubtitle: "Полнофункциональное настольное приложение для удобного запуска и управления локальным сервером llama-server, с встроенным терминалом, менеджером моделей и поиском по HuggingFace.",
+                btnWinDownload: "📥 Скачать v0.2.0 для Windows (.exe)",
+                btnYouTube: "▶️ Видеоуроки на YouTube",
+                btnSupport: "☕ Поддержать",
+                featuresTitle: "Основные возможности v0.2.0",
+                f1Title: "🤗 Менеджер моделей & HuggingFace",
+                f1Desc: "Удобный просмотр локальных .gguf моделей, встроенный поиск по HuggingFace Hub с сортировкой, отслеживанием прогресса и скачиванием в один клик.",
+                f2Title: "💻 Встроенный Терминал",
+                f2Desc: "Настоящая системная консоль прямо в правой панели (cmd.exe в Windows, xterm в Linux). Поддерживает интерактивные TUI-утилиты (например, pi).",
+                f3Title: "🕹️ Статус-контроллер & Версия",
+                f3Desc: "Индикатор статуса с цветовой индикацией (зеленый/оранжевый/синий) и живое определение установленной версии llama-server через опрос --version.",
+                f4Title: "⚡ Установка pi-агента",
+                f4Desc: "Быстрый запуск установки консольного pi-агента прямо из меню приложений (Файл → Установить pi-агента).",
+                f5Title: "⚙️ 18 категорий настроек",
+                f5Desc: "Расширенная гибкая конфигурация: контекст, GPU, память, CPU, batch, параметры генерации, MoE, Embeddings/Reranking, SSL и опции бэкендов.",
+                f6Title: "🌙 Темы и Локализация",
+                f6Desc: "Поддержка тёмной и светлой темы оформления, а также мгновенное переключение языка интерфейса (RU / EN).",
+                ytTitle: "Видеоинструкции и демонстрации",
+                ytDesc: "Узнайте, как эффективно настраивать контроллер, искать и скачивать модели с HuggingFace и работать со встроенным терминалом.",
+                ytBtn: "Смотреть видеоуроки →",
+                releasesTitle: "История релизов",
+                releasesSubtitle: "Выберите необходимую версию или архив релиза",
+                allReleasesGithub: "Все релизы на GitHub →",
+                badgeLatest: "Актуальный релиз",
+                v020Summary: "Главное обновление приложения:",
+                v020List: `<li><strong>Менеджер моделей:</strong> Поиск и прямое скачивание файлов .gguf с HuggingFace Hub.</li>
+                           <li><strong>Встроенный системный терминал:</strong> Интеграция настоящей консоли ОС прямо в панель интерфейса.</li>
+                           <li><strong>Система статусов и версий:</strong> Живой опрос версии llama-server --version и цветовой индикатор работы сервера.</li>
+                           <li><strong>Расширенная конфигурация:</strong> 18 категорий параметров запуска.</li>
+                           <li><strong>Интеграция pi-агента:</strong> Пункт меню для автоматической установки.</li>`,
+                v018Summary: "Добавлена тёмная тема интерфейса, автоматическая проверка обновлений самого приложения и свежих сборок llama.cpp.",
+                qsTitle: "Быстрый запуск",
+                step1: "Шаг 1",
+                step1Desc: 'Запустите контроллер и скачайте бэкенд через <span class="text-white font-medium">Файл → Установить llama.cpp</span>.',
+                step2: "Шаг 2",
+                step2Desc: 'Скачайте модель в <span class="text-white font-medium">Файл → Модели…</span> через HuggingFace или выберите локальный .gguf.',
+                step3: "Шаг 3",
+                step3Desc: "Настройте GPU-слои, контекст и параметры генерации в боковом меню.",
+                step4: "Шаг 4",
+                step4Desc: 'Нажмите <span class="text-white font-medium">Старт</span>. Сервер запустится на порту 18080 и откроется в браузере!',
+                sysReqTitle: "Системные требования",
+                sysReqWin: "<strong>Windows:</strong> Windows 10/11 x64 (полная поддержка).",
+                sysReqLin: "<strong>Linux:</strong> Ubuntu 20.04+ (пакеты .deb, .rpm, .tar.gz).",
+                sysReqPy: "<strong>Python:</strong> Версии 3.8–3.12 (при сборке из исходных файлов).",
+                gpuTitle: "Поддерживаемое железо (Бэкенды)",
+                gpuDesc: "Приложение поддерживает любые графические процессоры благодаря глубокой интеграции с экосистемой:",
+                mitLicense: "Проект распространяется под лицензией MIT.",
+                tgChannel: "Телеграм-канал",
+                footerReleases: "Релизы"
+            },
+            en: {
+                heroBadge: "🚀 Major Release: v0.2.0 · MIT License",
+                heroSubtitle: "A full-featured desktop GUI application to launch and manage local llama-server instances with an embedded system terminal, model manager, and HuggingFace Hub search.",
+                btnWinDownload: "📥 Download v0.2.0 for Windows (.exe)",
+                btnYouTube: "▶️ YouTube Tutorials",
+                btnSupport: "☕ Donate / Support",
+                featuresTitle: "Key Features in v0.2.0",
+                f1Title: "🤗 Model Manager & HuggingFace",
+                f1Desc: "Browse local .gguf models, search HuggingFace Hub with sorting, download progress tracking, and one-click model switching.",
+                f2Title: "💻 Embedded System Terminal",
+                f2Desc: "A real OS terminal built right into the side panel (cmd.exe on Windows, xterm on Linux). Supports interactive TUI apps (e.g. pi).",
+                f3Title: "🕹️ Status Controller & Version Check",
+                f3Desc: "Color-coded status indicator (green/orange/blue) and live llama-server version detection via real-time --version queries.",
+                f4Title: "⚡ Pi-Agent One-Click Installer",
+                f4Desc: "Quickly trigger the installation of the console pi-agent directly from the app menu (File → Install pi-agent).",
+                f5Title: "⚙️ 18 Parameter Categories",
+                f5Desc: "Advanced flexible configuration: context, GPU, memory, CPU, batching, generation settings, MoE, Embeddings/Reranking, SSL, and backends.",
+                f6Title: "🌙 Dark Theme & Multilingual",
+                f6Desc: "Support for dark and light UI themes with instant language switching (English / Russian).",
+                ytTitle: "Video Tutorials & Demos",
+                ytDesc: "Learn how to configure the controller, search and download models from HuggingFace, and use the embedded terminal.",
+                ytBtn: "Watch Playlist →",
+                releasesTitle: "Release History",
+                releasesSubtitle: "Select a version or download release archives",
+                allReleasesGithub: "All Releases on GitHub →",
+                badgeLatest: "Latest Release",
+                v020Summary: "Major Application Update:",
+                v020List: `<li><strong>Model Manager:</strong> Search and directly download .gguf models from HuggingFace Hub.</li>
+                           <li><strong>Embedded System Terminal:</strong> Native OS console integrated directly into the app panel.</li>
+                           <li><strong>Status & Versioning:</strong> Live llama-server --version detection and color status indicator.</li>
+                           <li><strong>Extended Config:</strong> 18 categories of CLI start parameters.</li>
+                           <li><strong>Pi-Agent Setup:</strong> Menu action for automatic PowerShell installation.</li>`,
+                v018Summary: "Added dark theme support, automated updates checking for the application, and fresh llama.cpp builds.",
+                qsTitle: "Quick Start Guide",
+                step1: "Step 1",
+                step1Desc: 'Launch the application and download the backend via <span class="text-white font-medium">File → Install llama.cpp</span>.',
+                step2: "Step 2",
+                step2Desc: 'Download a model via <span class="text-white font-medium">File → Models…</span> from HuggingFace or choose a local .gguf file.',
+                step3: "Step 3",
+                step3Desc: "Adjust GPU layers, context size, and sampling parameters in the sidebar.",
+                step4: "Step 4",
+                step4Desc: 'Click <span class="text-white font-medium">Start</span>. The server will launch on port 18080 and open in your web browser!',
+                sysReqTitle: "System Requirements",
+                sysReqWin: "<strong>Windows:</strong> Windows 10/11 x64 (Full support).",
+                sysReqLin: "<strong>Linux:</strong> Ubuntu 20.04+ (.deb, .rpm, .tar.gz packages).",
+                sysReqPy: "<strong>Python:</strong> Versions 3.8–3.12 (if building from source).",
+                gpuTitle: "Supported Hardware & Backends",
+                gpuDesc: "Supports all major GPU platforms thanks to deep integration with the ecosystem:",
+                mitLicense: "Distributed under the MIT License.",
+                tgChannel: "Telegram Channel",
+                footerReleases: "Releases"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            localStorage.setItem('preferred_lang', lang);
+
+            // Update UI buttons
+            const ruBtn = document.getElementById('lang-ru');
+            const enBtn = document.getElementById('lang-en');
+
+            if (lang === 'en') {
+                enBtn.className = "px-3 py-1 rounded-md transition text-white bg-indigo-600 shadow-sm";
+                ruBtn.className = "px-3 py-1 rounded-md transition text-slate-400 hover:text-white";
+            } else {
+                ruBtn.className = "px-3 py-1 rounded-md transition text-white bg-indigo-600 shadow-sm";
+                enBtn.className = "px-3 py-1 rounded-md transition text-slate-400 hover:text-white";
+            }
+
+            // Translate elements
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        }
+
+        // Initialize language
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred_lang');
+            const browserLang = navigator.language.startsWith('ru') ? 'ru' : 'en';
+            setLanguage(savedLang || browserLang);
+        });
+    </script>
 </body>
 </html>
